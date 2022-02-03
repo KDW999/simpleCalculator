@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editText;
     Button button1, button2, button3, button4, button5, button6, button7, button8, button9,
-            buttonPlus, buttonMinus, button0, buttonSum; // 버튼 선언
+            buttonPlus, buttonMinus, button0, buttonSum, buttonMul, buttonDiv, buttonDel; // 버튼 선언
 
     int x1, x2, result;
     char op;
@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         buttonMinus = findViewById(R.id.buttonMinus);
         button0 = findViewById(R.id.button0);
         buttonSum = findViewById(R.id.buttonSum);
+        buttonMul = findViewById(R.id.buttonMul);
+        buttonDiv = findViewById(R.id.buttonDiv);
+        buttonDel = findViewById(R.id.buttonDel);
     }
 
     private void click() {
@@ -151,6 +154,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        buttonMul.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                x1 = Integer.parseInt(editText.getText().toString());
+                op = '*';
+                editText.setText("");
+            }
+        });
+
+        buttonDiv.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                x1 = Integer.parseInt(editText.getText().toString());
+                op = '/';
+                editText.setText("");
+            }
+        });
+
+        buttonDel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                editText.setText("");
+            }
+        });
+
         buttonSum.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -159,14 +187,27 @@ public class MainActivity extends AppCompatActivity {
                 switch (op)
                 {
                     case '+':
-                        result = x1 + x2;
+                        result = (x1 + x2);
                         editText.setText(Integer.toString(result));
                         break;
 
                     case '-':
-                        result = x1 - x2;
+                        result = (x1 - x2);
                         editText.setText(Integer.toString(result));
                         break;
+
+                    case '*':
+                        result = (x1 * x2);
+                        editText.setText(Integer.toString(result));
+                        break;
+
+                    case '/':
+                        result = (x1 / x2);
+                        editText.setText(Integer.toString(result));
+                        break;
+
+                    default:
+                        editText.setText("오류입니다.");
                 }
             }
         });
